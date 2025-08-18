@@ -60,11 +60,11 @@ CREATE TABLE "favorites" (
 
 ALTER TABLE "user_profiles"
 ADD FOREIGN KEY("user_id") REFERENCES "users"("id")
-ON DELETE NO ACTION;
+ON DELETE CASCADE;
 
 ALTER TABLE "publications"
 ADD FOREIGN KEY("owner_profile_id") REFERENCES "user_profiles"("id")
-ON DELETE NO ACTION;
+ON DELETE CASCADE;
 ALTER TABLE "publications"
 ADD FOREIGN KEY("category_id") REFERENCES "categories"("id")
 ON DELETE NO ACTION;
