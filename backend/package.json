@@ -15,7 +15,9 @@
     "lint:fix": "eslint . --fix",
     "postinstall": "npm run setup:env",
     "setup:env": "node scripts/setup-env.js .env.example .env",
-    "sort:pkg": "sort-package-json"
+    "sort:pkg": "sort-package-json",
+    "test": "NODE_ENV=test jest --detectOpenHandles --verbose",
+    "test:coverage": "NODE_ENV=test jest --coverage --detectOpenHandles --verbose"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

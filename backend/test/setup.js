@@ -1,5 +1,5 @@
 import { config } from '../config/wawita.config.js';
-import { pool } from '../db/config.db.js';
+import pool from '../db/config.db.js';
 
 afterAll(async () => {
   await pool.end();
