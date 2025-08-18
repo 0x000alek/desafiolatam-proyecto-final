@@ -1,0 +1,8 @@
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+    background-color: var(--color-primario) !important;
+    color: var(--color-secundario) !important;
+}
+
+div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):hover {
+  background-color: color-mix(in srgb, var(--color-primario), var(--color-secundario)) !important;
+}

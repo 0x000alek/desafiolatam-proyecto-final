@@ -1,0 +1,15 @@
+:root {
+  --color-primario: #254ee7;
+  --color-secundario: #feedee;
+  --color-acento: #fe6295;
+  --color-boton1: #254ee7;
+  --color-boton2: #feedee;
+  --color-fondo: #313131;
+  --color-texto: #585858;
+  --color-borde: #D9E5F1;
+  --color-transparente: #00000000;
+  --color-white: #fff;
+  --color-clear: #F1F6F7;
+  --color-dark: #00104a;
+  --color-gray: #868893;
+}
