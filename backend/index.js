@@ -15,12 +15,7 @@ const apiBasePath = `${prefix}/${version}`;
 const app = express();
 
 app.use(express.json());
-app.use(
-  cors({
-    origin: config.auth.corsOrigins,
-    credentials: true,
-  })
-);
+app.use(cors());
 
 app.use(`${apiBasePath}/auth`, authRoutes);
 app.use(`${apiBasePath}/publications`, publicationRoutes);

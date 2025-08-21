@@ -101,9 +101,6 @@ export const config = {
     saltRounds: parseInt(process.env.SALT_ROUNDS) || 10,
     tokenHeader: process.env.TOKEN_HEADER || 'Authorization',
     cookieName: process.env.COOKIE_NAME || 'auth_token',
-    corsOrigins: process.env.CORS_ORIGINS?.split(',') || [
-      'http://localhost:3000',
-    ],
   },
   api: {
     prefix: process.env.API_PREFIX || '/api',
