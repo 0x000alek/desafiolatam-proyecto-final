@@ -309,7 +309,7 @@ h1 {
 
 .img-cart {
     object-fit: cover;
-    height: 93px;
+    height: 250px;
     width: 100%;
 }
 
@@ -321,6 +321,7 @@ h1 {
 .product-cart {
     border-bottom: 3px dotted var(--color-borde);
     padding-bottom: 20px;
+    padding-top: 20px;
 }
 
 .card-cart {
@@ -475,6 +476,36 @@ h1 {
     object-fit: cover;
 }
 
+.img-not-found {
+    width: 100%;
+    position: relative;
+}
+
+ h1.not-found {
+    position: absolute;
+    font-size: 61px;
+    transform: rotate(-15deg);
+    background-color: var(--color-acento);
+    color: var(--color-white);
+    left: 0;
+    padding-left: 30px;
+    padding-right: 30px;
+    z-index: 5;
+    transition: .2s;
+}
+
+.bg-acento {
+    background-color: var(--color-acento);
+}
+
+.bg-rosa {
+    background-color: var(--color-secundario);
+}
+
+.bg-clear {
+    background-color: var(--color-clear);
+}
+
 .toldo {
     width: 100%;
     height: auto;
@@ -487,6 +518,18 @@ h1 {
 
 .color-gray {
     color: var(--color-gray);
+}
+
+.color-rosa {
+    color: var(--color-secundario);
+}
+
+.color-bluegray {
+    color: var(--color-clear);
+}
+
+.color-azul {
+    color: var(--color-primario);
 }
 
 
@@ -520,6 +563,12 @@ h1 {
         height: 350px;
     }
 
+    h1.not-found {
+        font-size: 48px;
+        transform: rotate(-20deg);
+        left: -3%;
+    }
+
 }
 
 
@@ -547,6 +596,12 @@ h1 {
 
     .product-img.product-img-detail {
         height: 240px;
+    }
+
+    h1.not-found {
+        font-size: 68px;
+        transform: rotate(-25deg);
+        left: 2%;
     }
 
 }
@@ -578,6 +633,12 @@ h1 {
         height: 300px;
     }
 
+    h1.not-found {
+        font-size: 80px;
+        transform: rotate(-25deg);
+        left: 8%;
+    }
+
 }
 
 
@@ -607,6 +668,12 @@ h1 {
         height: 330px;
     }
 
+    h1.not-found {
+        font-size: 84px;
+        transform: rotate(-25deg);
+        left: 14%;
+    }
+
 }
 
 
@@ -630,6 +697,12 @@ h1 {
 
     .product-img.product-img-detail {
         height: 350px;
+    }
+
+    h1.not-found {
+        font-size: 88px;
+        transform: rotate(-25deg);
+        left: 18%;
     }
 
 }
