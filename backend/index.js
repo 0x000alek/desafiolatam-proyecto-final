@@ -5,6 +5,7 @@ import { config } from './config/wawita.config.js';
 import authRoutes from './routes/auth.routes.js';
 import publicationRoutes from './routes/publication.routes.js';
 import userRoutes from './routes/user.routes.js';
+import checkoutRoutes from './routes/checkout.routes.js';
 
 const { protocol, host, port } = config.server;
 const serverUrl = `${protocol}://${host}:${port}`;
@@ -20,6 +21,7 @@ app.use(cors());
 app.use(`${apiBasePath}/auth`, authRoutes);
 app.use(`${apiBasePath}/publications`, publicationRoutes);
 app.use(`${apiBasePath}/users`, userRoutes);
+app.use(`${apiBasePath}/checkouts`, checkoutRoutes);
 
 const server = app.listen(port, () => {
   console.info(`Server on fire 🔥 ${serverUrl}`);
