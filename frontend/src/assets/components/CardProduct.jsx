@@ -14,7 +14,12 @@ const CardProduct = () => {
                 <div key={p.id} className="col-lg-4 py-4">
                     <div className="product-card">
                         <div className="product-overlay"></div>
-                        <div className="product-condition">{p.condition}</div>
+                        <div
+                            className={`product-condition
+                                ${p.condition === "Nuevo" ?
+                                    "product-condition-nuevo"
+                                    : "product-condition-usado"}`}
+                        >{p.condition}</div>
                         <Link to={`/product/${p.id}`} className="text-decoration-none">
                             <div className="product-info">
                                 <h2>{p.title}</h2>
@@ -36,7 +41,7 @@ const CardProduct = () => {
                                 </div>
                             </div>
                         </div>
-                        <img src={p.imageFile ? URL.createObjectURL(p.imageFile) : p.imageUrl} alt={p.title} className="product-img" />
+                        <img src={p.imageUrl} alt={p.title} className="product-img" />
                     </div>
                 </div>
             ))}
