@@ -13,7 +13,7 @@ const UserProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token") || null)
     const navigate = useNavigate()
 
-    // Manejar el LogIn
+    // manejar el LogIn
     const [user, setUser] = useState(null) //datos usuario logueado
     const [logIn, setLogIn] = useState({ email: '', password: '' })
 
@@ -21,7 +21,7 @@ const UserProvider = ({ children }) => {
         setLogIn({ ...logIn, [e.target.name]: e.target.value })
     }
 
-    // Autenticacion de usuario
+    // autenticacion de usuario
     const auth = async (email, password) => {
         setLoading(true)
         try {
@@ -34,7 +34,6 @@ const UserProvider = ({ children }) => {
 
                 const { data: user } = await getUserProfile() // obtener datos del usuario
                 setUser(user)
-                navigate('/profile')
                 console.log("user logueado:", user)
                 console.log("token guardado:", token)
                 return true // autenticación exitosa
@@ -91,7 +90,7 @@ const UserProvider = ({ children }) => {
         }
     }, [token])
 
-    // Manjear LogOut
+    // manjear LogOut
     const handleLogOut = () => {
         localStorage.removeItem('token')
         setToken(null)
@@ -107,7 +106,7 @@ const UserProvider = ({ children }) => {
         console.log('Logout exitoso')
     }
 
-    // Manejar el Register
+    // manejar el Register
     const [dataRegister, setDataRegister] = useState({
         name: '',
         email: '',
@@ -119,26 +118,46 @@ const UserProvider = ({ children }) => {
         try {
             const { data } = await register({ email, name, password })
             const { token } = data
-            localStorage.setItem('token', token)
-            setToken(token)
-            console.log("registrado", data)
-            Swal.fire({
-                title: `¡Te has registrado con éxito!`,
-                text: "Bienvenid@!",
-                icon: "success",
-                timer: 1500,
-                showConfirmButton: false
-            })
+            if (token) {
+                localStorage.setItem('token', token)
+                setToken(token)
+                await fetchUser()
+                Swal.fire({
+                    title: `¡Te has registrado con éxito!`,
+                    text: "Bienvenid@!",
+                    icon: "success",
+                    timer: 2000,
+                    showConfirmButton: false
+                })
+                return true
+            }
         } catch (error) {
             console.error('Error en el registro:', error)
             setError('Error al registrar el usuario')
+
+            if (error.response && error.response.status === 409) {
+                Swal.fire({
+                    title: "Usuario ya registrado",
+                    text: "Este correo ya está en uso, intenta con otro.",
+                    icon: "warning",
+                })
+            } else {
+                Swal.fire({
+                    title: "Error",
+                    text: "Hubo un problema al registrar tu cuenta. Intenta nuevamente.",
+                    icon: "error",
+                })
+            }
+            return false
         }
     }
 
     const handleSubmitRegister = async (e) => {
         e.preventDefault()
 
-        if (!dataRegister.email || !dataRegister.password || !dataRegister.name) {
+        const { name, email, password, confirmPassword } = dataRegister
+
+        if (!email || !password || !name) {
             Swal.fire({
                 title: "Oh oh!",
                 text: "Debes ingresar tu nombre, email y contraseña, intenta nuevamente!",
@@ -147,7 +166,7 @@ const UserProvider = ({ children }) => {
             return
         }
 
-        if (dataRegister.password !== dataRegister.confirmPassword) {
+        if (password !== confirmPassword) {
             Swal.fire({
                 title: "Contraseñas no coinciden",
                 text: "La confirmación no coincide con la contraseña.",
@@ -156,17 +175,29 @@ const UserProvider = ({ children }) => {
             return
         }
 
-        try {
-            await userRegister(dataRegister.email, dataRegister.name, dataRegister.password)
+        if (name.length < 3) {
+            Swal.fire({
+                title: "Nombre demasiado corto",
+                text: "El nombre debe tener al menos 3 caracteres.",
+                icon: "warning",
+            })
+            return
+        }
+
+        if (password.length < 6) {
+            Swal.fire({
+                title: "Contraseña demasiado corta",
+                text: "La contraseña debe tener al menos 6 caracteres.",
+                icon: "warning",
+            })
+            return
+        }
+
+        const success = await userRegister(email, name, password)
+
+        if (success) {
             setDataRegister({ name: '', email: '', password: '', confirmPassword: '' })
             navigate('/profile')
-        } catch (error) {
-            console.log(error)
-            Swal.fire({
-                title: "Error",
-                text: "Hubo un problema al registrar tu cuenta. Intenta nuevamente.",
-                icon: "error",
-            })
         }
     }
 
