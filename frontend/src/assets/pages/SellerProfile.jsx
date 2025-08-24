@@ -1,7 +1,8 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
 import { useParams } from "react-router-dom"
 import { getUserProfile } from "../services/userServicce"
 import { FontAwesomeIcon, faEnvelope, faWhatsapp } from '../icons/icons'
+import { ProductContext } from '../context/ProductContext'
 import CardProductRepo from "../components/CardProductRepo"
 import toldo from "../images/toldo.svg"
 
@@ -9,6 +10,7 @@ const SellerProfile = () => {
 
     const { id } = useParams()
     const [ seller, setSeller ] = useState({})
+    const { products } = useContext(ProductContext)
 
     // Filtramos productos del vendedor
     const myProducts = seller?.publications || []
@@ -19,7 +21,7 @@ const SellerProfile = () => {
             setSeller(data)
         }
         getSellerProfile()
-    }, [])
+    }, [products])
 
     if (!seller) {
         return <p>cargando...</p>
