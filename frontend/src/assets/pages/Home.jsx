@@ -1,13 +1,13 @@
 import Slide from "../components/Carousel"
 import CardHome from "../components/CardHome"
-import CalltoAction from "../components/CalltoAction"
+import CallToAction from "../components/CallToAction"
 
 const Home = () => {
     return (
         <>
             <Slide />
             <CardHome />
-            <CalltoAction />
+            <CallToAction />
         </>
     )
 }
