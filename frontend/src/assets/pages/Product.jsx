@@ -9,7 +9,7 @@ import formatPrice from '../utils/formatPrice'
 const Product = () => {
 
     const { id } = useParams()
-    const { addProduct } = useContext(CartContext)
+    const { cart, toggleProduct } = useContext(CartContext)
     const { getProductById, likeProduct } = useContext(ProductContext)
 
     const [product, setProduct] = useState(null)
@@ -24,8 +24,10 @@ const Product = () => {
 
     if (!product) {
         return <p>cargando...</p>
-
     }
+
+    const inCart = cart.some(item => item.id === product.id)
+
     return (
         <section id="section-pages" className="container-fluid">
             <div className="container">
@@ -36,14 +38,19 @@ const Product = () => {
                     </div>
                     <div className="col-md-7 ps-md-4">
                         <div className="d-flex justify-content-between align-items-start">
-                            <span className="condition-product-detail">{product.condition}</span>
-                            <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-login">like me</Tooltip>}>
+                            <span className={`condition-product-detail mb-3 ${product.condition === "Nuevo" ?
+                                "product-condition-nuevo"
+                                : "product-condition-usado"}`}>{product.condition}</span>
+                            <OverlayTrigger placement="bottom"
+                                overlay={<Tooltip id="tooltip-fav">
+                                    {product.isFavorite ? "eliminar de favs" : "añadir a favs"}
+                                </Tooltip>}>
                                 <a href="#" onClick={(e) => {
                                     e.preventDefault()
                                     likeProduct(product.id)
                                 }}
-                                    className="text-decoration-none text-dark">
-                                    <FontAwesomeIcon icon={product.isFavorite ? faHeartSolid : faHeartRegular} className="icon-product-detail" />
+                                    className="text-decoration-none">
+                                    <FontAwesomeIcon icon={product.isFavorite ? faHeartSolid : faHeartRegular} className="icon-product-detail fs-5" />
                                 </a>
                             </OverlayTrigger>
                         </div>
@@ -58,18 +65,14 @@ const Product = () => {
                                     volver
                                 </button>
                             </Link>
-                            <button onClick={() => addProduct(product)} className="btn btn-primary">
+                            {/* <button onClick={() => addProduct(product)} className="btn btn-primary">
                                 añadir al carrito <FontAwesomeIcon icon={faBagShopping} className="icon-product" />
+                            </button> */}
+                            <button
+                                onClick={() => toggleProduct(product)}
+                                className={`btn ${inCart ? "btn-primary" : "btn-secondary"}`}>
+                                {inCart ? " eliminar del carrito " : " añadir al carrito "}
                             </button>
-                            {/* <div className="card-description">
-								<h6>Características:</h6>
-								<ul>
-									<li>condición: usado</li>
-									<li>color: azul</li>
-									<li>uso: 6 meses</li>
-								</ul>
-							</div> */}
-
                         </div>
                     </div>
                 </div>

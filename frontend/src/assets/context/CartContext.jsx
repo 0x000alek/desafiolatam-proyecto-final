@@ -43,7 +43,7 @@ const CartProvider = ({ children }) => {
                     title: "Producto agregado",
                     text: `${p.title} se agregó al carrito.`,
                     icon: "success",
-                    timer: 2000,
+                    timer: 1800,
                     showConfirmButton: false
                 })
                 return [...currentItems, { ...p, count: 1 }]
@@ -102,7 +102,7 @@ const CartProvider = ({ children }) => {
                     title: "Compra exitosa!",
                     text: `Gracias por confiar en nosotros ${user?.name || user?.email}!`,
                     icon: "success",
-                    timer: 1500,
+                    timer: 1800,
                     showConfirmButton: false
                 }).then(() => {
                     vaciarCart()
@@ -119,6 +119,30 @@ const CartProvider = ({ children }) => {
         }
     }
 
+    const toggleProduct = (p) => {
+        const exists = cart.find(item => item.id === p.id)
+
+        if (exists) {
+            subProduct(p.id)
+            Swal.fire({
+                title: "Producto eliminado",
+                text: `${p.title} se eliminó del carrito`,
+                icon: "warning",
+                timer: 1800,
+                showConfirmButton: false
+            })
+        } else {
+            addProduct(p)
+            Swal.fire({
+                title: "Producto agregado",
+                text: `${p.title} se agregó al carrito`,
+                icon: "success",
+                timer: 1800,
+                showConfirmButton: false
+            })
+        }
+    }
+
     const stateGlobalCart = {
         products,
         getProducts,
@@ -128,7 +152,8 @@ const CartProvider = ({ children }) => {
         calculoTotal,
         vaciarCart,
         cartCount,
-        handleCheckout
+        handleCheckout,
+        toggleProduct
     }
 
     return (

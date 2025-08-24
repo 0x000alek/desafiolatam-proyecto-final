@@ -180,10 +180,14 @@ a:hover {
 
 .box-appear-1 {
   background-color: var(--color-primario);
-  padding: 10px;
+  width: 48px;
+  height: 48px;
   margin-right: 5px;
   color: var(--color-secundario);
   transition: .5s;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .box-appear-1:hover {
@@ -229,6 +233,10 @@ a:hover {
 .product-condition-usado {
     background-color: var(--color-primario);
     color: var(--color-white);
+}
+
+.product-icon-in-cart {
+    color: var(--color-acento);
 }
 
 /* CALL TO ACTION */
@@ -475,23 +483,12 @@ h1 {
 
 .condition-product-detail {
     font-family: 'Amaranth', sans-serif;
-    color: var(--color-white);
-    background-color: var(--color-primario);
     padding: 1px 13px 4px 12px;
     border-radius: 0 15px 15px 0;
 }
 
 .icon-product-detail {
     color: var(--color-acento);
-    padding: 10px;
-    border-radius: 100px;
-    transition: .5s;
-}
-
-.icon-product-detail.fa-heart {
-    color: var(--color-acento);
-    padding: 10px;
-    border-radius: 100px;
     transition: .5s;
 }
 

@@ -23,7 +23,7 @@ const Cart = () => {
                                 <FontAwesomeIcon icon={faBagShopping} className="fs-1 mb-3 color-gray" />
                                 <h2>Carrito VACÍO</h2>
                                 <h4>Aún no has agregado artículos</h4>
-                                <p>Pero sigue por aquí y te ayudamos a encontrar lo que necesites!</p>
+                                <p>Sigue por aquí y te ayudamos a encontrar lo que necesites!</p>
                                 <Link to="/repository"><button type="button" className="btn btn-primary mx-2">Ver todo</button></Link>
                             </div>
                         ) : (
