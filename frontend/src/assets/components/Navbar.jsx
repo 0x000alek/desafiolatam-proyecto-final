@@ -11,15 +11,15 @@ const Navigation = () => {
     return (
         <>
             <Header />
-            <Navbar expand="lg" className="navbar-dark">
+            <Navbar expand="md" className="navbar-dark">
                 <Container>
                     <Navbar.Brand><Link to="/"><Image src={Logo} /></Link></Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="ms-auto">
-                            <NavLink to="/" className="text-decoration-none"><div className="nav-link">Home</div></NavLink>
-                            <NavLink to="/repository" className="text-decoration-none"><div className="nav-link">Productos</div></NavLink>
-                            <NavLink to={user ? "/" : "/register"} onClick={user ? handleLogOut : ''} className="text-decoration-none"><div className="nav-link">{user ? "Cerrar Sesión" : "Crear Cuenta"}</div></NavLink>
+                            <NavLink to="/" className="text-decoration-none"><div className="nav-link ms-md-0 ms-2">Home</div></NavLink>
+                            <NavLink to="/repository" className="text-decoration-none"><div className="nav-link ms-md-0 ms-2">Productos</div></NavLink>
+                            <NavLink to={user ? "/" : "/register"} onClick={user ? handleLogOut : ''} className="text-decoration-none"><div className="nav-link ms-md-0 ms-2">{user ? "Cerrar Sesión" : "Crear Cuenta"}</div></NavLink>
                         </Nav>
                     </Navbar.Collapse>
                 </Container>

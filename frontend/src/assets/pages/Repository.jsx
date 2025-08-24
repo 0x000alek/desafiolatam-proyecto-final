@@ -10,7 +10,7 @@ const Repository = () => {
         <section id="section-pages" className="container-fluid">
             <div className="container">
                 <h1>Productos</h1>
-                <div className="row justify-content-center">
+                <div className="row justify-content-start">
                     <CardProductRepo products={products} />
                 </div>
             </div>
