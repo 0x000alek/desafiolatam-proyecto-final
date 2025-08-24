@@ -18,7 +18,12 @@ const CardProductRepo = ({ products }) => {
             {products.map((p) => (
                 <div key={p.id} id="products-repo" className="col-xl-3 col-lg-4 col-sm-6 mb-4 d-flex">
                     <div className="product-card flex-grow-1">
-                        <div className="product-condition">{p.condition}</div>
+                        <div
+                            className={`product-condition
+                                ${p.condition === "Nuevo" ?
+                                    "product-condition-nuevo"
+                                    : "product-condition-usado"}`}
+                        >{p.condition}</div>
                         <Link to={`/product/${p.id}`}><img src={p.imageUrl} alt={p.title} className="product-img" /></Link>
                         <Link to={`/product/${p.id}`} className='text-decoration-none'>
                             <div className="product-info">
@@ -34,7 +39,11 @@ const CardProductRepo = ({ products }) => {
                                     </div>
                                 </Link>
                             </OverlayTrigger>
-                            <OverlayTrigger placement="bottom" overlay={<Tooltip id="tooltip-login">añadir a favs</Tooltip>}>
+                            <OverlayTrigger placement="bottom" overlay={
+                                <Tooltip id="tooltip-login">
+                                    {p.isFavorite ? "Eliminar de favs" : "Añadir a favs"}
+                                </Tooltip>
+                            }>
                                 <a href="#" onClick={(e) => {
                                     e.preventDefault()
                                     likeProduct(p.id)
