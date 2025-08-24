@@ -436,12 +436,15 @@ h1 {
     z-index: 10;
 }
 
+#products-repo .product-info h5 {
+    overflow: hidden;
+    height: 26px;
+}
+
 #products-repo .product-condition {
     top: 20px;
     left: 80%;
     transform: rotate(90deg);
-    background-color: var(--color-primario);
-    color: var(--color-white);
     padding: 5px 15px;
     font-size: 12px;
     font-weight: bold;
@@ -449,6 +452,16 @@ h1 {
     border-radius: 0 15px 15px 0;
     z-index: 10;
     text-align: start;
+}
+
+#products-repo .product-condition-nuevo {
+    background-color: var(--color-acento);
+    color: var(--color-white);
+}
+
+#products-repo .product-condition-usado {
+    background-color: var(--color-primario);
+    color: var(--color-white);
 }
 
 .icon-product a {
@@ -585,6 +598,9 @@ h1 {
         height: 111px;
     }
 
+    #products-repo .product-condition {
+        left: 80%;
+    }
     #products-repo .product-img {
         height: 246px;
     }
@@ -640,6 +656,9 @@ h1 {
         height: 156px;
     }
 
+    #products-repo .product-condition {
+        left: 74%;
+    }
     #products-repo .product-img {
         height: 336px;
     }
